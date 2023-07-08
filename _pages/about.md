@@ -2,25 +2,25 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: Junior@<a href='https://eecs.pku.edu.cn'>School of EECS</a>, <a href='https://www.pku.edu.cn'>Peking University</a>
 
 profile:
   align: right
-  image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
-  address: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+  image: photo6.jpeg
+  # address: >
+  #   <p>Peking University</p>
+  #   <p>Haidian district, Beijing, China</p>
 
-news: true  # includes a list of news items
-latest_posts: true  # includes a list of the newest posts
+news: false  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true  # includes social icons at the bottom of the page
+social: false  # includes social icons at the bottom of the page
 ---
+I'm a third-year undergraduate student from the [Turing class](https://cfcs.pku.edu.cn/english/research/turing_program/introduction1/index.htm), [School of EECS](https://eecs.pku.edu.cn/), [Peking University](https://www.pku.edu.cn/). My research focus on the intersection of computer vision and machine learning. 
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I'm currently an undergraduate visiting researcher ([UGVR](https://engineering.stanford.edu/students-academics/programs/global-engineering-programs/chinese-ugvr)) at Stanford University, supervised by [Prof. Jiajun Wu](https://jiajunwu.com/). I'm also working as a research intern at [Wangxuan Institute of Computer Technology](https://www.icst.pku.edu.cn/), advised by [Prof. Jiaying Liu](http://39.96.165.147/people/liujiaying.html).  Before that, I was very fortunate to be advised by [Prof. Yisen Wang](https://yisenwang.github.io/).
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/Curriculum_Vitae.pdf).
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+[Email](mailto:rundong_luo@stu.pku.edu.cn) / [Github](https://github.com/Red-Fairy) / [Wechat](../assets/img/wechat.jpg)
+
+<!-- [STRUCT](http://39.96.165.147/) affiliated to  -->

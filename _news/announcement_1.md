@@ -1,8 +1,7 @@
 ---
 layout: post
-date: 2015-10-22 15:59:00-0400
+date: 2022-11-12 12:00
 inline: true
-related_posts: false
 ---
 
-A simple inline announcement.
+One paper submitted to CVPR 2023.
