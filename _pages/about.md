@@ -6,7 +6,7 @@ subtitle: Junior@<a href='https://eecs.pku.edu.cn'>School of EECS</a>, <a href='
 
 profile:
   align: right
-  image: photo_stanford_lab.jpg
+  image: golden_bridge_2.jpg
   # address: >
   #   <p>Peking University</p>
   #   <p>Haidian district, Beijing, China</p>
