@@ -1,7 +1,7 @@
 ---
 layout: post
-date: 2022-11-12 12:00
+date: 2023-01-22
 inline: true
 ---
 
-One paper submitted to CVPR 2023.
+One paper on self-supervised adversarial training (DYNACL) accepted by ICLR 2023! :sparkles:
