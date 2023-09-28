@@ -15,7 +15,7 @@ news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
-I'm a final-year undergraduate from the [Turing class](https://cfcs.pku.edu.cn/english/research/turing_program/introduction1/index.htm), [School of Electronics Engineering and Computer Science](https://eecs.pku.edu.cn/), [Peking University](https://www.pku.edu.cn/). My current research focus is computer vision, especially 3D scene understanding. 
+I'm a final-year undergraduate from the [Turing class](https://cfcs.pku.edu.cn/english/research/turing_program/introduction1/index.htm), [School of Electronics Engineering and Computer Science](https://eecs.pku.edu.cn/), [Peking University](https://www.pku.edu.cn/). The ultimate goal of my research is to enable machines to understand the scene in a more systematic way and I'm currently interested in 3D scene understanding.
 
 I'm currently an undergraduate visiting researcher ([UGVR](https://engineering.stanford.edu/students-academics/programs/global-engineering-programs/chinese-ugvr)) at [Stanford University](https://www.stanford.edu/), supervised by [Prof. Jiajun Wu](https://jiajunwu.com/). I'm also working as a research intern at [Wangxuan Institute of Computer Technology](https://www.icst.pku.edu.cn/), advised by [Prof. Jiaying Liu](http://39.96.165.147/people/liujiaying.html).  Before that, I was very fortunate to be advised by [Prof. Yisen Wang](https://yisenwang.github.io/).
 
