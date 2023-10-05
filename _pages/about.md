@@ -19,6 +19,8 @@ I'm a final-year undergraduate from the [Turing class](https://cfcs.pku.edu.cn/e
 
 I'm currently an undergraduate visiting researcher ([UGVR](https://engineering.stanford.edu/students-academics/programs/global-engineering-programs/chinese-ugvr)) at [Stanford University](https://www.stanford.edu/), supervised by [Prof. Jiajun Wu](https://jiajunwu.com/). I'm also working as a research intern at [Wangxuan Institute of Computer Technology](https://www.icst.pku.edu.cn/), advised by [Prof. Jiaying Liu](http://39.96.165.147/people/liujiaying.html).  Before that, I was very fortunate to be advised by [Prof. Yisen Wang](https://yisenwang.github.io/).
 
+I'm actively looking for a Ph.D. position starting from Fall 2024. :smile:
+
 You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/Curriculum_Vitae.pdf).
 
 [Email](mailto:rundong_luo@stu.pku.edu.cn) / [Github](https://github.com/Red-Fairy) / [Wechat](../assets/img/wechat.jpg)
