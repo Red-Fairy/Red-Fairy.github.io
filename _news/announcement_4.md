@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Awarded the **Sensetime Scholarship** (30 undergraduates major in AI nationwide per year) :sparkles:
+Awarded the **Sensetime Scholarship** (30 undergraduates major in AI nationwide per year) :kissing_heart:

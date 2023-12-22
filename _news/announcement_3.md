@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Awarded the **National Scholarship** (top 0.2%)! :smile:
+Awarded the **National Scholarship** (top 0.2%)! :smiley:
