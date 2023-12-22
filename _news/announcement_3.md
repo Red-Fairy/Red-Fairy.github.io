@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Awarded the **National Scholarship** (top 0.2% undergradute nationwide)! :smiley:
+Awarded the **National Scholarship** (top 0.2% undergraduate nationwide)! :smiley:
