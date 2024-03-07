@@ -16,7 +16,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 honors: true
 ---
-I'm a fourth-year undergraduate from the [Turing class](https://cfcs.pku.edu.cn/english/research/turing_program/introduction1/index.htm), [School of Electronics Engineering and Computer Science](https://eecs.pku.edu.cn/), [Peking University](https://www.pku.edu.cn/). My research interest spans computer vision and machine learning, with a focus on 3D vision and generative models.
+I'm a fourth-year undergraduate from the [Turing class](https://cfcs.pku.edu.cn/english/research/turing_program/introduction1/index.htm), [School of Electronics Engineering and Computer Science](https://eecs.pku.edu.cn/), [Peking University](https://www.pku.edu.cn/). My research lies in computer vision, with a focus on 3D vision and generative models.
 
 <!-- My research interest is to enable machines perceive, understand, interact with, and learn from the 3D world and I'm currently interested in 3D object-centric learning and generation. -->
 
