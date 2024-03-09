@@ -26,6 +26,7 @@ I'm currently a research intern at Microsoft Research Asia, working with [Dr. Ji
 
 You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/CV-Rundong.pdf).
 
-[Email](mailto:rundong_luo@stu.pku.edu.cn) / [Github](https://github.com/Red-Fairy) / [Wechat](../assets/img/wechat.jpg)
+[Email](mailto:rundong_luo@stu.pku.edu.cn) / [Github](https://github.com/Red-Fairy) 
+<!-- / [Wechat](../assets/img/wechat.jpg) -->
 
 <!-- [Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fred-fairy.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com) -->
