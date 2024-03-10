@@ -20,7 +20,7 @@ I'm a fourth-year undergraduate from the [Turing class](https://cfcs.pku.edu.cn/
 
 <!-- My research interest is to enable machines perceive, understand, interact with, and learn from the 3D world and I'm currently interested in 3D object-centric learning and generation. -->
 
-I'm currently a research intern at Microsoft Research Asia, working with [Dr. Jianlong Fu](https://jianlong-fu.github.io/). I spent a wonderful summer as an undergraduate visiting researcher ([UGVR](https://engineering.stanford.edu/students-academics/programs/global-engineering-programs/chinese-ugvr)) at [Stanford University](https://www.stanford.edu/), supervised by [Prof. Jiajun Wu](https://jiajunwu.com/). Before that, I am honored to be advised by [Prof. Jiaying Liu](http://39.96.165.147/people/liujiaying.html) and [Prof. Yisen Wang](https://yisenwang.github.io/).
+I'm currently a research intern at [Microsoft Research Asia](https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/), working with [Dr. Jianlong Fu](https://jianlong-fu.github.io/). I spent a wonderful summer as an undergraduate visiting researcher ([UGVR](https://engineering.stanford.edu/students-academics/programs/global-engineering-programs/chinese-ugvr)) at [Stanford University](https://www.stanford.edu/), supervised by [Prof. Jiajun Wu](https://jiajunwu.com/). Before that, I am honored to be advised by [Prof. Jiaying Liu](http://39.96.165.147/people/liujiaying.html) and [Prof. Yisen Wang](https://yisenwang.github.io/).
 
 <!-- I'm actively looking for a Ph.D. position starting from Fall 2024. :smile: -->
 
