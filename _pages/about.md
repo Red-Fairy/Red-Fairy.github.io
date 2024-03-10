@@ -24,7 +24,7 @@ I'm currently a research intern at Microsoft Research Asia, working with [Dr. Ji
 
 <!-- I'm actively looking for a Ph.D. position starting from Fall 2024. :smile: -->
 
-You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/CV-Rundong.pdf).
+You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/CV-Rundong-New.pdf).
 
 [Email](mailto:rundong_luo@stu.pku.edu.cn) / [Github](https://github.com/Red-Fairy) 
 <!-- / [Wechat](../assets/img/wechat.jpg) -->
