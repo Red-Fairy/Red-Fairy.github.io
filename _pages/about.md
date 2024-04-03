@@ -26,7 +26,7 @@ I spent a wonderful summer as an undergraduate visiting researcher ([UGVR](https
 
 <!-- I'm actively looking for a Ph.D. position starting from Fall 2024. :smile: -->
 
-You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/CV-Rundong-New.pdf).
+<!-- You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/CV-Rundong-New.pdf). -->
 
 [Email](mailto:rundong_luo@stu.pku.edu.cn) / [Github](https://github.com/Red-Fairy) 
 <!-- / [Wechat](../assets/img/wechat.jpg) -->
