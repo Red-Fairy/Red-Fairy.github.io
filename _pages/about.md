@@ -2,14 +2,12 @@
 layout: about
 title: about
 permalink: /
-subtitle: Senior@<a href='https://eecs.pku.edu.cn'>School of EECS</a>, <a href='https://www.pku.edu.cn'>Peking University</a> <br> Incoming CS Ph.D. Student@<a href='https://cs.cornell.edu'>Cornell University</a>
 
 profile:
   align: right
   image: shanghai.jpg
-  # address: >
-  #   <p>Peking University</p>
-  #   <p>Haidian district, Beijing, China</p>
+
+subtitle: Senior@<a href='https://eecs.pku.edu.cn'>School of EECS</a>, <a href='https://www.pku.edu.cn'>Peking University</a> <br> Incoming CS Ph.D. Student@<a href='https://cs.cornell.edu'>Cornell University</a>
 
 news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
