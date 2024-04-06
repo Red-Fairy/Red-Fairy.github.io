@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Senior@<a href='https://eecs.pku.edu.cn'>School of EECS</a>, <a href='https://www.pku.edu.cn'>Peking University</a>
+subtitle: Senior@<a href='https://eecs.pku.edu.cn'>School of EECS</a>, <a href='https://www.pku.edu.cn'>Peking University</a> <br> Incoming CS Ph.D. Student@<a href='https://cs.cornell.edu'>Cornell University</a>
 
 profile:
   align: right
