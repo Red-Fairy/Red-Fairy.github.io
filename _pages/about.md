@@ -5,7 +5,7 @@ permalink: /
 
 profile:
   align: right
-  image: shanghai.jpg
+  image: personal/pku_graduation.jpg
 
 subtitle: Senior@<a href='https://eecs.pku.edu.cn'>School of EECS</a>, <a href='https://www.pku.edu.cn'>Peking University</a> <br> Incoming CS Ph.D. Student@<a href='https://cs.cornell.edu'>Cornell University</a>
 
