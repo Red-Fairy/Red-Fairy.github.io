@@ -12,6 +12,9 @@ layout: default
         {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
       </h1>
       <p class="desc">{{ page.subtitle }}</p>
+      <div class="clearfix">
+        {{ content }}
+      </div>
     </div>
     {% if page.profile %}
     <div class="profile" style="margin-left: 20px;">
@@ -39,10 +42,6 @@ layout: default
   </header>
 
   <article>
-    <div class="clearfix">
-      {{ content }}
-    </div>
-
     <!-- News -->
     {% if page.news and site.announcements.enabled -%}
     <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">news</a></h2>
