@@ -7,7 +7,7 @@ profile:
   align: right
   image: personal/pku_graduation.jpg
 
-subtitle: Incoming CS PhD Student@<a href='https://cs.cornell.edu'>Cornell University</a>
+# subtitle: Incoming CS PhD Student@<a href='https://cs.cornell.edu'>Cornell University</a>
 
 news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
