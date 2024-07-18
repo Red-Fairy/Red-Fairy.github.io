@@ -5,7 +5,7 @@ permalink: /
 
 profile:
   align: right
-  image: personal/pku_graduation.jpg
+  image: personal/professional.jpg
 
 # subtitle: Incoming CS PhD Student@<a href='https://cs.cornell.edu'>Cornell University</a>
 
