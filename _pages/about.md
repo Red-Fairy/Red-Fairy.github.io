@@ -13,6 +13,7 @@ news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 honors: true
+services: true
 ---
 I'm an incoming CS PhD student at [Cornell University](https://cs.cornell.edu). My research interest lies in 3D computer vision, with a focus 3D scene understanding and generation.
 
