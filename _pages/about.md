@@ -5,7 +5,7 @@ permalink: /
 
 profile:
   align: right
-  image: personal/professional.jpg
+  image: personal/pku_graduation_small.jpg
 
 # subtitle: Incoming CS PhD Student@<a href='https://cs.cornell.edu'>Cornell University</a>
 
@@ -26,7 +26,7 @@ I obtained my Bachelor's degree in Computer Science (summa cum laude) from the [
 
 You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/CV-Rundong-New.pdf).
 
-[Email](mailto:rundong_luo@stu.pku.edu.cn) / [Github](https://github.com/Red-Fairy) 
+[Email](mailto:rl897@cornell.edu) / [Github](https://github.com/Red-Fairy) 
 
 <!-- / [Wechat](../assets/img/wechat.jpg) -->
 
