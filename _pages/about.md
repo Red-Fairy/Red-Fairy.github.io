@@ -26,6 +26,6 @@ I obtained my Bachelor's degree in Computer Science (summa cum laude) from the [
 
 You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/CV-Rundong-New.pdf).
 
-[Email](mailto:rl897@cornell.edu) / [Github](https://github.com/Red-Fairy) 
+[Email](mailto:rl897@cornell.edu) / [Google Scholar](https://scholar.google.com/citations?user=dc8tL2sAAAAJ&hl=en) / [Github](https://github.com/Red-Fairy) 
 
 <!-- / [Wechat](../assets/img/wechat.jpg) -->
