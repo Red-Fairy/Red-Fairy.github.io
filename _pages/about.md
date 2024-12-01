@@ -22,7 +22,7 @@ I obtained my Bachelor's degree in Computer Science (summa cum laude) from the [
 
 <!-- My research interest is to enable machines perceive, understand, interact with, and learn from the 3D world and I'm currently interested in 3D object-centric learning and generation. -->
 
-You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/CV-Rundong-New.pdf).
+You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/Curriculum_Vitae.pdf).
 
 [Email](mailto:rl897@cornell.edu) / [Google Scholar](https://scholar.google.com/citations?user=dc8tL2sAAAAJ&hl=en) / [Github](https://github.com/Red-Fairy) 
 
