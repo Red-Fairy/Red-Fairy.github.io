@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2024-02-14
+date: 2025-01-27
 inline: true
 related_posts: false
 ---
 
-One paper on 3D object-centric learning (uOCF) now available on arXiv! :smiley:
+uOCF accepted by TMLR! :smiley:

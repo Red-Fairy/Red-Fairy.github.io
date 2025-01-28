@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2025-01-27
+date: 2024-03-11
 inline: true
 related_posts: false
 ---
 
-Physpart accepted by ICRA! :smiley:
+SACC++ accpeted by T-PAMI :satisfied:
