@@ -628,11 +628,6 @@ footer.sticky-bottom {
             text-decoration: none;
           }
         }
-      
-      .award {
-        color: rgba(166, 25, 46, 1);
-        font-weight: bolder;
-      }
 
         >em {
           border-bottom: 1px solid;
@@ -722,6 +717,12 @@ footer.sticky-bottom {
       div.abstract.hidden.open {
         border-color: var(--global-text-color);
       }
+
+      .comment {
+        color: rgba(166, 25, 46, 1);
+        font-weight: bolder;
+      }
+      
     }
   }
 }

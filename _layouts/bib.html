@@ -133,10 +133,10 @@
           {{ entry.note | strip }}
         </div>
 
-        <!-- Award, e.g., Best Paper Award, Oral, marked in red -->
-        {% if entry.award %}
-          <div class="award">
-            {{ entry.award }}
+        <!-- Comment -->
+        {% if entry.comment %}
+          <div class="comment">
+            {{ entry.comment }}
           </div>
         {% endif %}
 
