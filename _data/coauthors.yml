@@ -1,12 +1,42 @@
+"Deng":
+  - firstname: ["Congyue"]
+    url: https://cs.stanford.edu/~congyue/
+
+"Huang":
+  - firstname: ["Siyuan"]
+    url: https://siyuanhuang.com/
+    
+"Guidbas":
+  - firstname: ["Leonidas"]
+    url: https://geometry.stanford.edu/?member=guibas
+    
+"Ma":
+  - firstname: ["Wei-Chiu"]
+    url: https://www.cs.cornell.edu/~weichiu/
+
+"Snavely":
+  - firstname: ["Noah"]
+    url: https://www.cs.cornell.edu/~snavely/
+
+"Farhadi":
+  - firstname: ["Ali"]
+    url: https://homes.cs.washington.edu/~ali/
+
+"Wallingford":
+  - firstname: ["Matthew"]
+    url: https://mattwallingford.github.io/
+
+"Geng":
+  - firstname: ["Haoran"]
+    url: https://haoran-geng.github.io/
+
 "Wang":
   - firstname: ["Yifei"]
     url: https://yifeiwang.me/
 
-"Wang":
   - firstname: ["Yisen"]
     url: https://yisenwang.github.io/
 
-"Wang":
   - firstname: ["Wenjing"]
     url: https://daooshee.github.io/website/
 
