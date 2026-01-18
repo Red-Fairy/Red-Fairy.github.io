@@ -14,6 +14,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 honors: true
 services: true
+latest_posts: false  # includes a list of latest blog posts
 ---
 I'm a second-year CS PhD student at [Cornell University](https://cs.cornell.edu), working with [Prof. Wei-Chiu Ma](https://www.cs.cornell.edu/~weichiu/) and [Prof. Noah Snavely](https://www.cs.cornell.edu/~snavely/). My research interests lie at the intersection of video generative models and 3D computer vision, where I aim to develop generative models capable of creating highly controllable and photorealistic environments.
 
