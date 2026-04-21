@@ -1,6 +1,12 @@
 "Wang":
   - firstname: ["Yu-Chiang Frank"]
     url: https://vllab.ee.ntu.edu.tw/ycwang.html
+  - firstname: ["Yifei"]
+    url: https://yifeiwang.me/
+  - firstname: ["Yisen"]
+    url: https://yisenwang.github.io/
+  - firstname: ["Wenjing"]
+    url: https://daooshee.github.io/website/
 
 "Tu":
   - firstname: ["Tao"]
@@ -17,6 +23,8 @@
 "Wu":
   - firstname: ["Yen-Siang"]
     url: https://www.csie.ntu.edu.tw/~b09902097/yensiangwu/
+  - firstname: ["Jiajun"]
+    url: https://jiajunwu.com/
 
 "Deng":
   - firstname: ["Congyue"]
@@ -25,11 +33,11 @@
 "Huang":
   - firstname: ["Siyuan"]
     url: https://siyuanhuang.com/
-    
-"Guidbas":
+
+"Guibas":
   - firstname: ["Leonidas"]
     url: https://geometry.stanford.edu/?member=guibas
-    
+
 "Ma":
   - firstname: ["Wei-Chiu"]
     url: https://www.cs.cornell.edu/~weichiu/
@@ -50,20 +58,10 @@
   - firstname: ["Haoran"]
     url: https://haoran-geng.github.io/
 
-"Wang":
-  - firstname: ["Yifei"]
-    url: https://yifeiwang.me/
-
-  - firstname: ["Yisen"]
-    url: https://yisenwang.github.io/
-
-  - firstname: ["Wenjing"]
-    url: https://daooshee.github.io/website/
-
 "Liu":
   - firstname: ["Jiaying"]
     url: http://39.96.165.147/people/liujiaying.html
-  
+
 "Yang":
   - firstname: ["Wenhan"]
     url: https://flyywh.github.io/
@@ -71,7 +69,3 @@
 "Yu":
   - firstname: ["Hong-Xing"]
     url: https://kovenyu.com/
-
-"Wu":
-  - firstname: ["Jiajun"]
-    url: https://jiajunwu.com/
