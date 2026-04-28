@@ -8,7 +8,6 @@
 
   <div class="publications" id="publications-by-date" role="tabpanel">
     {%- for y in publication_years %}
-    <h2 class="year">{{ y }}</h2>
     {% bibliography -f {{ site.scholar.bibliography }} -q @*[year={{ y }}]* %}
     {%- endfor %}
   </div>
