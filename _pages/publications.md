@@ -10,6 +10,8 @@ nav_order: 2
 <!-- _pages/publications.md -->
 <div class="publications">
 
+<p class="contrib-note"><sup>*</sup> denotes equal contribution; <sup>&dagger;</sup> denotes equal advising.</p>
+
 {%- for y in page.years %}
   <h2 class="year">{{y}}</h2>
   {% bibliography -f papers -q @*[year={{y}}]* %}
