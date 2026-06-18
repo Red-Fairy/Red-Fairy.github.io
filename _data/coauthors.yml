@@ -65,10 +65,14 @@
 "Yang":
   - firstname: ["Wenhan"]
     url: https://flyywh.github.io/
+  - firstname: ["Xinyu"]
+    url: https://youngxinyu1802.github.io/
 
 "Yu":
   - firstname: ["Hong-Xing"]
     url: https://kovenyu.com/
+  - firstname: ["Haozheng"]
+    url: https://haozheng-yu.github.io/
 
 "Averbuch-Elor":
   - firstname: ["Hadar"]
@@ -77,3 +81,11 @@
 "He":
   - firstname: ["Guangzhao"]
     url: https://www.guangzhaohe.com/
+
+"Sun":
+  - firstname: ["Jennifer J."]
+    url: https://jenjsun.com/
+
+"Hariharan":
+  - firstname: ["Bharath"]
+    url: https://www.cs.cornell.edu/~bharathh/
