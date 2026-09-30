@@ -59,6 +59,8 @@
     url: https://haoran-geng.github.io/
 
 "Liu":
+  - firstname: ["Yunong"]
+    url: https://yunongliu.com/
   - firstname: ["Jiaying"]
     url: http://39.96.165.147/people/liujiaying.html
 
@@ -89,3 +91,19 @@
 "Hariharan":
   - firstname: ["Bharath"]
     url: https://www.cs.cornell.edu/~bharathh/
+
+"Tancik":
+  - firstname: ["Matthew"]
+    url: https://www.matthewtancik.com/
+
+"Buch":
+  - firstname: ["Shyamal"]
+    url: https://cs.stanford.edu/~shyamal/
+
+"Stearns":
+  - firstname: ["Colton"]
+    url: https://coltonstearns.github.io/
+
+"Xian":
+  - firstname: ["Wenqi"]
+    url: https://wxian3.github.io/
