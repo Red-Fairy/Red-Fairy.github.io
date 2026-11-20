@@ -2,8 +2,6 @@
 layout: research-note
 title: Depth from a sideways step
 description: A pencil and a doorframe drift apart when you move your head. How much of that motion can a camera predict?
-permalink: /blog/preview/
-date: 2026-11-20 12:00:00 -0500
 topic: Camera geometry
 thumbnail: /assets/img/blog/parallax.png
 template_preview: true
@@ -11,8 +9,7 @@ sitemap: false
 ---
 {% comment %}
 To use this note as a starting point, copy it to _posts/YYYY-MM-DD-your-title.md.
-Remove permalink, template_preview, and sitemap. Update the date, thumbnail,
-and article text. Set math: true for TeX equations.
+Remove template_preview and sitemap. Update the title, thumbnail, and article text. Set math: true for TeX equations.
 {% endcomment %}
 
 Hold a pencil at arm’s length and line it up with a distant doorframe. Close one eye. Now slide your head a little to the right, keeping your gaze pointed straight ahead. The pencil slips to the left of the frame. Both objects stayed still, yet their alignment changed.

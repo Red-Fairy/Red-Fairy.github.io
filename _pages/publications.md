@@ -1,20 +1,17 @@
 ---
-layout: page
+layout: research-blog
 permalink: /publications/
-title: publications
-description: My recent publications
-years: [2026, 2025, 2024, 2023]
+title: Publications
+description: Research publications by Rundong Luo, grouped by year.
 nav: true
 nav_order: 2
 ---
-<!-- _pages/publications.md -->
+
+<header class="index-heading">
+  <h1>{{ page.title }}</h1>
+  <p class="contributions"><sup>*</sup> Equal contribution <span aria-hidden="true">·</span> <sup>†</sup> Equal advising</p>
+</header>
+
 <div class="publications">
-
-<p class="contrib-note"><sup>*</sup> denotes equal contribution; <sup>&dagger;</sup> denotes equal advising.</p>
-
-{%- for y in page.years %}
-  <h2 class="year">{{y}}</h2>
-  {% bibliography -f papers -q @*[year={{y}}]* %}
-{% endfor %}
-
+  {% bibliography -f papers %}
 </div>

@@ -1,12 +1,12 @@
 $(document).ready(function() {
-  // add toggle functionality to abstract and bibtex buttons
-  $('a.abstract').click(function() {
-    $(this).parent().parent().find(".abstract.hidden").toggleClass('open');
-    $(this).parent().parent().find(".bibtex.hidden.open").toggleClass('open');
-  });
-  $('a.bibtex').click(function() {
-    $(this).parent().parent().find(".bibtex.hidden").toggleClass('open');
-    $(this).parent().parent().find(".abstract.hidden.open").toggleClass('open');
+  $('.publications button[data-panel]').on('click', function () {
+    const links = this.closest('.links');
+    const wasOpen = this.getAttribute('aria-expanded') === 'true';
+    for (const button of links.querySelectorAll('[data-panel]')) {
+      const open = button === this && !wasOpen;
+      button.setAttribute('aria-expanded', String(open));
+      links.parentElement.querySelector('.hidden.' + button.dataset.panel).classList.toggle('open', open);
+    }
   });
   $('a').removeClass('waves-effect waves-light');
 

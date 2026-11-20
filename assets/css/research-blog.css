@@ -30,7 +30,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .signature { font: 600 1.4rem/1.15 var(--serif); letter-spacing: -.035em; }
 .masthead nav { gap: clamp(1rem, 4vw, 1.75rem); color: var(--muted); font-size: .9375rem; }
 .masthead nav a { padding-block: .5rem; }
-.masthead .active { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .45rem; }
+.masthead [aria-current] { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: .45rem; }
 .site-footer { margin: 3.5rem 0 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .875rem; }
 
 .index-heading { padding: clamp(3rem, 7vw, 5.5rem) 0 2.5rem; }
@@ -38,6 +38,7 @@ h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 500; text-wrap: 
 h1 { font-size: clamp(3rem, 7.7vw, 4.75rem); line-height: 1.05; letter-spacing: -.055em; }
 .dek { max-width: 39rem; margin: 1.2rem 0 0; color: var(--muted); font-size: clamp(1.1rem, 2.5vw, 1.25rem); line-height: 1.55; }
 .note-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--rule); }
+.empty-notes { margin: 0; padding: 1.5rem 0; border-top: 1px solid var(--rule); color: var(--muted); }
 .note-list li + li { border-top: 1px solid var(--rule); }
 .note-row { display: flex; align-items: center; gap: 2rem; padding: 1.8rem 0; text-decoration: none; }
 .thumbnail { display: block; width: 39%; height: auto; border-radius: .25rem; }

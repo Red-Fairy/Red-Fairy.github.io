@@ -7,11 +7,10 @@ codeBlocks.forEach(function (codeBlock) {
     copyButton.className = 'copy';
     copyButton.type = 'button';
     copyButton.ariaLabel = 'Copy code to clipboard';
-    copyButton.innerText = 'Copy';
-    copyButton.innerHTML = '<i class="fas fa-clipboard"></i>';
+    copyButton.innerHTML = '<i class="fas fa-clipboard" aria-hidden="true"></i><span class="sr-only">Copy</span>';
 
     // get code from code block and copy to clipboard
-    copyButton.addEventListener('click', function () {
+    copyButton.addEventListener('click', async function () {
       // check if code block has line numbers
       // i.e. `kramdown.syntax_highlighter_opts.block.line_numbers` set to true in _config.yml
       // or using `jekyll highlight` liquid tag with `linenos` option
@@ -22,14 +21,12 @@ codeBlocks.forEach(function (codeBlock) {
         // get code from code block when line numbers are not displayed
         var code = codeBlock.querySelector('code').innerText.trim();
       }
-      window.navigator.clipboard.writeText(code);
-      copyButton.innerText = 'Copied';
-      copyButton.innerHTML = '<i class="fas fa-clipboard-check"></i>';
+      await window.navigator.clipboard.writeText(code);
+      copyButton.innerHTML = '<i class="fas fa-clipboard-check" aria-hidden="true"></i><span class="sr-only">Copied</span>';
       var waitFor = 3000;
 
       setTimeout(function () {
-        copyButton.innerText = 'Copy';
-        copyButton.innerHTML = '<i class="fas fa-clipboard"></i>';
+        copyButton.innerHTML = '<i class="fas fa-clipboard" aria-hidden="true"></i><span class="sr-only">Copy</span>';
       }, waitFor);
     });
     

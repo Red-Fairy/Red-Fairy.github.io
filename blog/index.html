@@ -9,10 +9,9 @@ permalink: /blog/
   <p class="dek">{{ site.blog_description }}</p>
 </header>
 
-{% assign previews = site.pages | where: 'template_preview', true %}
-{% assign notes = site.posts | concat: previews | sort: 'date' | reverse %}
+{% if site.posts.size > 0 %}
 <ul class="note-list" aria-label="Research notes">
-  {% for note in notes %}
+  {% for note in site.posts %}
   <li>
     <a class="note-row" href="{{ note.redirect | default: note.url | relative_url | escape }}">
       {% if note.thumbnail %}<img class="thumbnail" src="{{ note.thumbnail | relative_url }}" alt="">{% endif %}
@@ -28,3 +27,6 @@ permalink: /blog/
   </li>
   {% endfor %}
 </ul>
+{% else %}
+<p class="empty-notes">No research notes published yet.</p>
+{% endif %}
