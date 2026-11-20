@@ -66,8 +66,8 @@ h3 { font-size: 1.32rem; letter-spacing: -.012em; }
 }
 .profile-intro h1 { grid-area: name; }
 .profile-aside { grid-area: aside; }
-.portrait { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 33%; border-radius: .55rem; }
-.portrait.circular { border-radius: 50%; }
+.portrait { display: block; width: 100%; height: auto; border-radius: .55rem; }
+.portrait.circular { aspect-ratio: 1; object-fit: cover; object-position: 50% 33%; border-radius: 50%; }
 .profile-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem .8rem; margin-top: .9rem; }
 .profile-links a, .section-bar a { color: var(--accent); text-decoration: none; font-size: .95rem; font-weight: 600; }
 .profile-links a:hover, .section-bar a:hover { text-decoration: underline; }
