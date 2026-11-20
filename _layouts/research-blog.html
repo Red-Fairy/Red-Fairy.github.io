@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>{{ page.title | escape }} · {{ site.first_name }} {{ site.last_name }}</title>
+  <meta name="description" content="{{ page.description | default: site.blog_description | escape }}">
+  {% if page.template_preview %}<meta name="robots" content="noindex,follow">{% endif %}
+  <link rel="stylesheet" href="{{ '/assets/css/research-blog.css' | relative_url }}">
+  {% if page.math %}{% include scripts/mathjax.html %}{% endif %}
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead">
+    <a class="signature" href="{{ '/' | relative_url }}">{{ site.first_name }} {{ site.last_name }}</a>
+    <nav aria-label="Site navigation">
+      <a href="{{ '/publications/' | relative_url }}">Publications</a>
+      <a class="active" href="{{ '/blog/' | relative_url }}" {% if page.url == '/blog/' %}aria-current="page"{% else %}aria-current="location"{% endif %}>Blog</a>
+    </nav>
+  </header>
+  <main id="main">{{ content }}</main>
+  <footer class="site-footer">
+    <span>© {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.last_name }}</span>
+    {% if page.url != '/blog/' %}<a href="{{ '/blog/' | relative_url }}">All research notes</a>{% else %}<a href="{{ '/' | relative_url }}">Homepage</a>{% endif %}
+  </footer>
+</body>
+</html>

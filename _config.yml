@@ -120,9 +120,9 @@ bing_site_verification:  # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: A trip down my journey # blog_name will be displayed in your blog page
+blog_name: Research notes
 blog_nav_title: blog # your blog must have a title for it to be displayed in the nav bar
-blog_description: Rundong's personal blog
+blog_description: Notes on 3D vision, video generation, and the geometry behind moving images.
 permalink: /blog/:year/:title/
 
 # Pagination
@@ -232,6 +232,11 @@ plugins:
 
 # Sitemap settings
 defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: research-note
   - scope:
       path: "assets"
     values:

@@ -1,0 +1,21 @@
+---
+layout: research-blog
+---
+<article class="note">
+  <header class="note-heading">
+    {% if page.template_preview or page.topic %}
+    <p class="meta">
+      {% if page.template_preview %}<span class="kind">Template preview</span>{% endif %}
+      {% if page.topic %}<span>{{ page.topic | escape }}</span>{% endif %}
+    </p>
+    {% endif %}
+    <h1>{{ page.title | escape }}</h1>
+    {% if page.description %}<p class="dek">{{ page.description | escape }}</p>{% endif %}
+    <p class="byline">
+      {% capture owner %}{{ site.first_name }} {{ site.last_name }}{% endcapture %}
+      <span>{{ page.author | default: owner | escape }}</span>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time>
+    </p>
+  </header>
+  <div class="prose">{{ content }}</div>
+</article>
