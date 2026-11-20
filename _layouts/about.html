@@ -1,99 +1,82 @@
 ---
-layout: default
+layout: research-blog
 ---
 
-<!-- about.html -->
-<div class="post">
-  <header class="post-header" style="display: flex; align-items: flex-start;">
-    <div style="flex: 1;">
-      <h1 class="post-title">
-        {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name
-        }}
-        {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
-      </h1>
-      <p class="desc">{{ page.subtitle }}</p>
-      <div class="clearfix">
-        {{ content }}
-      </div>
-    </div>
-    {% if page.profile %}
-    <div class="profile" style="margin-left: 20px;">
-      {%- if page.profile.image %}
-      {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
-
-      {% if page.profile.image_circular %}
-      {%- assign profile_image_class = "img-fluid z-depth-1 rounded-circle" -%}
-      {% else %}
-      {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
-      {% endif %}
-
-      {% include figure.html
-      path=profile_image_path
-      class=profile_image_class
-      alt=page.profile.image -%}
-      {% endif -%}
-      {%- if page.profile.address %}
-      <div class="address">
-        {{ page.profile.address }}
-      </div>
-      {%- endif %}
-      <!-- <a href="https://hits.seeyoufarm.com">
-        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fred-fairy.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" 
-            style="width: 100px; height: auto;"/>
-      </a> -->
-    </div>
+<section class="profile-intro" aria-labelledby="profile-name">
+  <h1 id="profile-name">{{ site.first_name }} {{ site.last_name }}</h1>
+  <div class="bio">
+    {% if page.subtitle %}<p>{{ page.subtitle }}</p>{% endif %}
+    {{ content }}
+  </div>
+  {% if page.profile %}
+  <aside class="profile-aside">
+    {% if page.profile.image %}
+    <img class="portrait{% if page.profile.image_circular %} circular{% endif %}" src="{{ page.profile.image | prepend: '/assets/img/' | relative_url }}" alt="{{ site.first_name }} {{ site.last_name }}" width="1168" height="1752" fetchpriority="high">
     {% endif %}
+    {% if page.profile.links %}
+    <nav class="profile-links" aria-label="Contact and profiles">
+      {% for link in page.profile.links %}
+      <a href="{{ link.url | relative_url | escape }}">{{ link.label }}</a>
+      {% endfor %}
+    </nav>
+    {% endif %}
+    {% if page.profile.address %}<div class="address">{{ page.profile.address }}</div>{% endif %}
+  </aside>
+  {% endif %}
+</section>
+
+{% if page.latest_posts %}
+<section class="home-section">
+  <header class="section-bar">
+    <h2>Latest posts</h2>
+    <a href="{{ '/blog/' | relative_url }}">All notes</a>
   </header>
+  {% include latest_posts.html %}
+</section>
+{% endif %}
 
-  <article>
+{% if page.selected_papers %}
+<section class="home-section">
+  <header class="section-bar">
+    <h2>Publications</h2>
+    <a href="{{ '/publications/' | relative_url }}">All publications</a>
+  </header>
+  {% include selected_papers.html %}
+</section>
+{% endif %}
 
-    <!-- Latest posts -->
-    {% if page.latest_posts -%}
-    <h2><a href="{{ '/blog/' | relative_url }}" style="color: inherit;">Latest Posts</a></h2>
-    {%- include latest_posts.html %}
-    {%- endif %}
+{% if page.news and site.announcements.enabled %}
+<section class="home-section">
+  <header class="section-bar">
+    <h2>News</h2>
+    <a href="{{ '/news/' | relative_url }}">All news</a>
+  </header>
+  {% include news.html limit=true %}
+</section>
+{% endif %}
 
-    <br>
+{% if page.services %}
+<section class="home-section">
+  <h2>Academic services</h2>
+  {% include services.html %}
+</section>
+{% endif %}
 
-    <!-- Selected papers -->
-    {% if page.selected_papers -%}
-    <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">Publications</a></h2>
-    {%- include selected_papers.html %}
-    {%- endif %}
+{% if page.honors %}
+<section class="home-section">
+  <h2>Selected honors and awards</h2>
+  {% include honors.html %}
+</section>
+{% endif %}
 
-    <!-- News -->
-    {% if page.news and site.announcements.enabled -%}
-    <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">News</a></h2>
-    {%- include news.html limit=true %}
-    {%- endif %}
+{% if page.social %}
+<section class="home-section">
+  {% include social.html %}
+  <p>{{ site.contact_note }}</p>
+</section>
+{% endif %}
 
-    <!-- services -->
-    {% if page.services -%}
-    <h2>Academic Services</h2>
-    {%- include services.html %}
-    {%- endif %}
-
-    <!-- Selected Honors and Awards-->
-    {% if page.honors -%}
-    <h2>Selected Honors and Awards</h2>
-    {%- include honors.html %}
-    {%- endif %}
-
-    <!-- Social -->
-    {%- if page.social %}
-    <div class="social">
-      <div class="contact-icons">
-        {% include social.html %}
-      </div>
-
-      <div class="contact-note">
-        {{ site.contact_note }}
-      </div>
-
-    </div>
-    {%- endif %}
-
-    <!-- Default Statcounter code for Personal Homepage https://red-fairy.github.io/-->
+<!-- Default Statcounter code for Personal Homepage https://red-fairy.github.io/-->
     <script type="text/javascript">
       var sc_project = 12961423;
       var sc_invisible = 1;
@@ -116,7 +99,3 @@ layout: default
 
       gtag('config', 'G-Z14L2YHJSR');
     </script>
-
-  </article>
-
-</div>

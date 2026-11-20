@@ -2,10 +2,19 @@
 layout: about
 title: about
 permalink: /
+description: Rundong Luo’s research in 3D computer vision and video generation at Cornell University.
 
 profile:
-  align: right
   image: personal/cancun.jpg
+  links:
+    - label: Email
+      url: mailto:rl897@cornell.edu
+    - label: Google Scholar
+      url: https://scholar.google.com/citations?user=dc8tL2sAAAAJ&hl=en
+    - label: GitHub
+      url: https://github.com/Red-Fairy
+    - label: WeChat
+      url: /assets/img/personal/wechat.jpg
 
 # subtitle: Incoming CS PhD Student@<a href='https://cs.cornell.edu'>Cornell University</a>
 
@@ -26,5 +35,3 @@ I obtained my Bachelor's degree in Computer Science (summa cum laude) from the [
 <!-- My research interest is to enable machines perceive, understand, interact with, and learn from the 3D world and I'm currently interested in 3D object-centric learning and generation. -->
 
 You may find my CV here: [Rundong's Curriculum Vitae](../assets/pdf/Curriculum_Vitae.pdf). Feel free to reach out to me via email or Wechat if you have any questions or just want to chat!
-
-[Email](mailto:rl897@cornell.edu) / [Google Scholar](https://scholar.google.com/citations?user=dc8tL2sAAAAJ&hl=en) / [Github](https://github.com/Red-Fairy) / [Wechat](../assets/img/personal/wechat.jpg)

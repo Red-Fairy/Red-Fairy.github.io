@@ -1,87 +1,29 @@
-{%- assign publication_years = "2026,2025,2024,2023" | split: "," -%}
-
 <div class="publications-section">
-  <div class="publications-toggle" role="tablist" aria-label="Publications view">
-    <button type="button" class="pub-toggle-btn active" data-view="by-date" role="tab" aria-selected="true">By date</button>
-    <button type="button" class="pub-toggle-btn" data-view="selected" role="tab" aria-selected="false">Selected</button>
+  <div class="view-buttons" role="group" aria-label="Publications view" hidden>
+    <button type="button" aria-pressed="true" data-view="by-date">By date</button>
+    <button type="button" aria-pressed="false" data-view="selected">Selected</button>
   </div>
-
-  <p class="contrib-note"><sup>*</sup> denotes equal contribution; <sup>&dagger;</sup> denotes equal advising.</p>
-
-  <div class="publications" id="publications-by-date" role="tabpanel">
-    {%- for y in publication_years %}
-    {% bibliography -f {{ site.scholar.bibliography }} -q @*[year={{ y }}]* %}
-    {%- endfor %}
-  </div>
-
-  <div class="publications" id="publications-selected" role="tabpanel" hidden>
-    {% bibliography -f {{ site.scholar.bibliography }} -q @*[selected=true]* %}
+  <p class="contributions"><sup>*</sup> Equal contribution <span aria-hidden="true">·</span> <sup>†</sup> Equal advising</p>
+  <div class="publications">
+    {% bibliography -f papers %}
   </div>
 </div>
 
-<style>
-  .publications-toggle {
-    display: flex;
-    gap: 1.5rem;
-    margin: 0.25rem 0 1rem;
-    border-bottom: 1px solid var(--global-divider-color);
-  }
-  .contrib-note {
-    margin: 0 0 1.25rem;
-    font-size: 0.85rem;
-    color: var(--global-text-color-light);
-  }
-  .pub-toggle-btn {
-    background: transparent;
-    border: 0;
-    padding: 0.4rem 0;
-    margin-bottom: -1px;
-    font-size: 0.95rem;
-    font-family: inherit;
-    color: var(--global-text-color-light);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: color 0.15s ease, border-color 0.15s ease;
-  }
-  .pub-toggle-btn:hover {
-    color: var(--global-text-color);
-  }
-  .pub-toggle-btn.active {
-    color: var(--global-theme-color);
-    border-bottom-color: var(--global-theme-color);
-  }
-  .pub-toggle-btn:focus {
-    outline: none;
-  }
-  .pub-toggle-btn:focus-visible {
-    outline: 2px solid var(--global-theme-color);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-</style>
-
 <script>
-  (function () {
-    var section = document.querySelector('.publications-section');
-    if (!section) return;
-    var buttons = section.querySelectorAll('.pub-toggle-btn');
-    var panels = {
-      'by-date': section.querySelector('#publications-by-date'),
-      'selected': section.querySelector('#publications-selected'),
-    };
-    buttons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var view = btn.dataset.view;
-        buttons.forEach(function (b) {
-          var active = b === btn;
-          b.classList.toggle('active', active);
-          b.setAttribute('aria-selected', active ? 'true' : 'false');
-        });
-        Object.keys(panels).forEach(function (key) {
-          if (!panels[key]) return;
-          panels[key].hidden = key !== view;
-        });
-      });
+  const views = document.querySelector('.view-buttons');
+  views.hidden = false;
+  for (const button of views.querySelectorAll('button')) {
+    button.addEventListener('click', () => {
+      for (const choice of views.querySelectorAll('button')) {
+        choice.setAttribute('aria-pressed', String(choice === button));
+      }
+      for (const list of document.querySelectorAll('.publications-section ol.bibliography')) {
+        for (const paper of list.children) {
+          paper.hidden = button.dataset.view === 'selected' && !paper.querySelector('[data-selected]');
+        }
+        list.hidden = !list.querySelector('li:not([hidden])');
+        list.previousElementSibling.hidden = list.hidden;
+      }
     });
-  })();
+  }
 </script>
