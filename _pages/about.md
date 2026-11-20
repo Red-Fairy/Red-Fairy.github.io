@@ -8,16 +8,22 @@ profile:
   image: personal/cancun.jpg
   links:
     - label: Email
+      icon: envelope
       url: mailto:rl897@cornell.edu
     - label: Google Scholar
+      icon: google-scholar
       url: https://scholar.google.com/citations?user=dc8tL2sAAAAJ&hl=en
     - label: GitHub
+      icon: github
       url: https://github.com/Red-Fairy
     - label: LinkedIn
+      icon: linkedin
       url: https://www.linkedin.com/in/rundong-luo-12aa58281/
     - label: X
+      icon: x-twitter
       url: https://x.com/LuoRundong0122
     - label: WeChat
+      icon: weixin
       url: /assets/img/personal/wechat.jpg
 
 # subtitle: Incoming CS PhD Student@<a href='https://cs.cornell.edu'>Cornell University</a>

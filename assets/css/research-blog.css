@@ -68,9 +68,25 @@ h3 { font-size: 1.32rem; letter-spacing: -.012em; }
 .profile-aside { grid-area: aside; }
 .portrait { display: block; width: 100%; height: auto; border-radius: .55rem; }
 .portrait.circular { aspect-ratio: 1; object-fit: cover; object-position: 50% 33%; border-radius: 50%; }
-.profile-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .35rem .8rem; margin-top: .9rem; }
-.profile-links a, .section-bar a { color: var(--accent); text-decoration: none; font-size: .95rem; font-weight: 600; }
-.profile-links a:hover, .section-bar a:hover { text-decoration: underline; }
+.profile-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; margin-top: .8rem; }
+.profile-links a {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: .3rem;
+  padding: .55rem .15rem;
+  border: 1px solid var(--rule);
+  border-radius: .5rem;
+  color: var(--accent);
+  font-size: .875rem;
+  line-height: 1.2;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+.profile-links a:hover, .profile-links a:focus-visible { background: var(--tint); border-color: var(--underline); }
+.section-bar a { color: var(--accent); text-decoration: none; font-size: .95rem; font-weight: 600; }
+.section-bar a:hover { text-decoration: underline; }
 .bio { grid-area: bio; max-width: 42rem; color: var(--body); font-size: 1.125rem; line-height: 1.6; }
 .bio p { margin: 0 0 1rem; }
 .bio p:last-child { margin-bottom: 0; }
@@ -116,7 +132,7 @@ h3 { font-size: 1.32rem; letter-spacing: -.012em; }
   .profile-intro { grid-template-columns: clamp(5.5rem, 24vw, 8rem) 1fr; grid-template-areas: "photo name" "contacts contacts" "bio bio"; align-items: center; gap: 1rem 1.25rem; }
   .profile-aside { display: contents; }
   .portrait { grid-area: photo; }
-  .profile-links { grid-area: contacts; justify-content: start; margin: 0; gap: .45rem 1.1rem; }
+  .profile-links { grid-area: contacts; width: 100%; max-width: 24rem; margin: 0; }
   .bio { font-size: 1.0625rem; }
 }
 @media (max-width: 34rem) {
