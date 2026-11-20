@@ -13,6 +13,10 @@ profile:
       url: https://scholar.google.com/citations?user=dc8tL2sAAAAJ&hl=en
     - label: GitHub
       url: https://github.com/Red-Fairy
+    - label: LinkedIn
+      url: https://www.linkedin.com/in/rundong-luo-12aa58281/
+    - label: X
+      url: https://x.com/LuoRundong0122
     - label: WeChat
       url: /assets/img/personal/wechat.jpg
 
