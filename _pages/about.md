@@ -25,12 +25,11 @@ honors: true
 services: true
 latest_posts: false  # includes a list of latest blog posts
 ---
-I'm a third-year CS PhD student at [Cornell University](https://cs.cornell.edu), working with [Prof. Wei-Chiu Ma](https://www.cs.cornell.edu/~weichiu/) and [Prof. Noah Snavely](https://www.cs.cornell.edu/~snavely/). I am also a research scientist intern at [Luma AI](https://lumalabs.ai/). My research interests lie at the intersection of video generative models and 3D computer vision, where I aim to develop generative models capable of creating highly controllable and photorealistic environments.
+I'm a third-year CS PhD student at [Cornell University](https://cs.cornell.edu), working with [Prof. Wei-Chiu Ma](https://www.cs.cornell.edu/~weichiu/) and [Prof. Noah Snavely](https://www.cs.cornell.edu/~snavely/). My research interests focus on video generation and 3D vision, where I aim to develop systems that are capable of creating or reconstructing highly controllable and photorealistic environments.
 
-I obtained my Bachelor's degree in Computer Science (summa cum laude) from the [Turing class](https://cfcs.pku.edu.cn/english/research/turing_program/introduction1/index.htm), [Peking University](https://www.pku.edu.cn/). I was a research intern at [Microsoft Research Asia](https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/) and an undergraduate visiting researcher ([UGVR](https://engineering.stanford.edu/students-academics/programs/global-engineering-programs/chinese-ugvr)) at [Stanford University](https://www.stanford.edu/). During my journey, I am honored to be advised by [Prof. Jiajun Wu](https://jiajunwu.com/), [Prof. Jiaying Liu](http://39.96.165.147/people/liujiaying.html), and [Prof. Yisen Wang](https://yisenwang.github.io/).
+I was a research intern at [Luma AI](https://lumalabs.ai/), [Microsoft Research Asia](https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/), and an undergraduate visiting researcher ([UGVR](https://engineering.stanford.edu/students-academics/programs/global-engineering-programs/chinese-ugvr)) at [Stanford University](https://www.stanford.edu/). I obtained my Bachelor's degree in Computer Science (summa cum laude) from the [Turing class](https://cfcs.pku.edu.cn/english/research/turing_program/introduction1/index.htm), [Peking University](https://www.pku.edu.cn/). During my journey, I am honored to be advised by [Prof. Jiajun Wu](https://jiajunwu.com/), [Prof. Jiaying Liu](http://39.96.165.147/people/liujiaying.html), and [Prof. Yisen Wang](https://yisenwang.github.io/).
 
 <!-- working with [Dr. Jianlong Fu](https://jianlong-fu.github.io/), -->
-
 
 <!-- My research interest is to enable machines perceive, understand, interact with, and learn from the 3D world and I'm currently interested in 3D object-centric learning and generation. -->
 
