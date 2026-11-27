@@ -7,22 +7,54 @@ thumbnail: /assets/img/blog/proxy-scene.jpg
 ---
 {% assign V = '/assets/video/proxy-scene/' | relative_url %}
 <style>
-  .prose .wide { width: min(70rem, 100vw - 2.5rem); position: relative; left: 50%; transform: translateX(-50%); }
-  .prose .clips { display: grid; gap: .6rem; margin: 1.8rem 0 .4rem; }
-  .prose .clips.two { grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); }
+  /* This note only: one column for text and figures, and a small colour system (blue agent, violet edit, slate proxy, orange diffusion). */
+  .note { max-width: 56rem; --c-agent: #155fbe; --c-edit: #6d3fc4; --c-proxy: #4b5563; --c-diff: #c2570c; --c-good: #0b7a55;
+          --t-agent: #e8f0fe; --t-edit: #f0eafc; --t-proxy: #eef0f3; --t-diff: #fdeede; --t-good: #e3f4ec; }
+  .note-heading h1 { background: linear-gradient(90deg, var(--c-agent), var(--c-edit) 55%, var(--c-diff)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .prose h2 { margin-top: 3.2rem; padding: .1rem 0 .1rem .8rem; border-left: .32rem solid var(--c-agent); }
+  .prose h3 { color: var(--c-agent); }
+  .prose code { background: var(--t-agent); color: #0d3c7a; padding: .08em .35em; border-radius: .25rem; font-size: .9em; }
+  .prose .wide { width: auto; }
+  .prose .panel { margin: 1.8rem 0; padding: .7rem; background: var(--surface); border: 1px solid var(--rule); border-radius: .7rem; }
+  .prose .clips { display: grid; gap: .6rem; margin: 0; }
+  .prose .clips.two { grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }
   .prose .clips figure { margin: 0; }
   .prose video { display: block; width: 100%; height: auto; border-radius: .4rem; background: #111; }
-  .prose .clips figcaption { margin-top: .3rem; font-size: .875rem; }
-  .prose .cap { margin: .4rem 0 1.8rem; color: var(--muted); font-size: .9375rem; }
-  .prose .pipeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .6rem; margin: 1.8rem 0 .6rem; padding: 0; list-style: none; counter-reset: step; }
-  .prose .pipeline li { counter-increment: step; padding: .8rem .9rem; background: var(--surface); border: 1px solid var(--rule); border-radius: .5rem; font-size: .95rem; line-height: 1.5; }
-  .prose .pipeline li::before { content: counter(step); display: block; font-weight: 700; color: var(--accent); }
-  .prose .pipeline b { display: block; color: var(--ink); }
+  .prose .clips figcaption { margin-top: .3rem; font-size: .875rem; color: var(--body); }
+  .prose .cap { margin: .7rem .2rem .1rem; padding-left: .7rem; border-left: 3px solid var(--c-edit); color: var(--muted); font-size: .9375rem; }
+  .prose .callout { margin: 1.4rem 0 1.8rem; padding: 1rem 1.2rem; background: linear-gradient(135deg, var(--t-agent), var(--t-edit)); border-radius: .7rem; color: var(--ink); }
+  .prose .callout b { color: var(--c-agent); }
+  .prose .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7rem; margin: 1.6rem 0; }
+  .prose .card { padding: .9rem 1rem; border-radius: .6rem; font-size: .98rem; line-height: 1.55; border-top: .28rem solid; }
+  .prose .card b { display: block; margin-bottom: .25rem; color: var(--ink); font-size: 1.05rem; }
+  .prose .card.a { background: var(--t-agent); border-color: var(--c-agent); }
+  .prose .card.b { background: var(--t-edit); border-color: var(--c-edit); }
+  .prose .card.c { background: var(--t-good); border-color: var(--c-good); }
+  .prose .pipeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin: 1.8rem 0 .8rem; padding: 0; list-style: none; counter-reset: step; }
+  .prose .pipeline li { position: relative; counter-increment: step; padding: .9rem 1rem 1rem; border-radius: .6rem; font-size: .95rem; line-height: 1.5; border-top: .28rem solid var(--c); background: var(--t); }
+  .prose .pipeline li::before { content: counter(step); display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; margin-bottom: .4rem; border-radius: 50%; background: var(--c); color: #fff; font-weight: 700; font-size: .9rem; }
+  .prose .pipeline li:not(:last-child)::after { content: "\2192"; position: absolute; right: -1.15rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1.2rem; }
+  .prose .pipeline b { display: block; color: var(--ink); font-size: 1.02rem; }
+  .prose .pipeline .s1 { --c: var(--c-agent); --t: var(--t-agent); } .prose .pipeline .s2 { --c: var(--c-edit); --t: var(--t-edit); }
+  .prose .pipeline .s3 { --c: var(--c-proxy); --t: var(--t-proxy); } .prose .pipeline .s4 { --c: var(--c-diff); --t: var(--t-diff); }
+  .prose table { display: table; width: 100%; margin: 1.6rem 0; font-size: 1rem; border-radius: .5rem; overflow: hidden; }
+  .prose th { background: var(--t-agent); color: #0d3c7a; font-weight: 600; }
+  .prose tbody tr:nth-child(even) td { background: var(--surface); }
+  .prose ul.limits { padding: 1rem 1.2rem 1rem 2.4rem; background: var(--t-diff); border-radius: .7rem; }
+  .prose ul.limits li::marker { color: var(--c-diff); }
+  .prose ul.limits strong { color: #8a3d06; }
+  @media (max-width: 46rem) {
+    .prose .cards { grid-template-columns: 1fr; }
+    .prose .pipeline { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .prose .pipeline li:not(:last-child)::after { content: none; }
+    .prose table { display: block; overflow-x: auto; }
+  }
+  @media (max-width: 26rem) { .prose .pipeline { grid-template-columns: 1fr; } }
 </style>
 
-**In short.** Most controllable video editing trains a dedicated model for each kind of control: one for camera, one for time, one for pose, one for effects. We take a different route. A coding agent rebuilds the clip as a 3D scene written in Blender Python. The edit is made in that scene, in code. A video diffusion model then turns an untextured grey render of the edited scene into a photorealistic video. The same three steps give camera control, time control and visual effects, with no model trained for any of them, and an edit can be changed afterwards by changing a number.
+<div class="callout"><b>In short.</b> Most controllable video editing trains a dedicated model for each kind of control: one for camera, one for time, one for pose, one for effects. We take a different route. A coding agent rebuilds the clip as a 3D scene written in Blender Python. The edit is made in that scene, in code. A video diffusion model then turns an untextured grey render of the edited scene into a photorealistic video. The same three steps give camera control, time control and visual effects, with no model trained for any of them, and an edit can be changed afterwards by changing a number.</div>
 
-<div class="wide">
+<div class="panel">
   <div class="clips">
     <figure><video src="{{ V }}param_ufo.mp4" autoplay muted loop playsinline></video></figure>
     <figure><video src="{{ V }}param_ufo_proxy.mp4" autoplay muted loop playsinline></video></figure>
@@ -43,19 +75,21 @@ Our pipeline joins the two. The agent's scene is rendered as a grey, untextured 
 
 This has three consequences that we explore below.
 
-1. **One framework for many edits.** Camera paths, speed changes and visual effects are all edits to the same scene, rendered by the same model.
-2. **Consistency across edits.** Every edit re-renders the same 3D scene, so geometry, layout and motion agree between rounds of editing without any memory mechanism.
-3. **Editability.** A generated video is hard to steer: when the result is not what you wanted, you re-roll and hope. Here the effect is a program with named parameters, so "the same effect, eight frames later" or "half as strong" is a parameter change followed by a re-render.
+<div class="cards">
+  <div class="card a"><b>One framework for many edits</b>Camera paths, speed changes and visual effects are all edits to the same scene, rendered by the same model.</div>
+  <div class="card b"><b>Consistency across edits</b>Every edit re-renders the same 3D scene, so geometry, layout and motion agree between rounds of editing without any memory mechanism.</div>
+  <div class="card c"><b>Editability</b>A generated video is hard to steer: when the result is not what you wanted, you re-roll and hope. Here the effect is a program with named parameters, so "the same effect, eight frames later" or "half as strong" is a parameter change followed by a re-render.</div>
+</div>
 
 The cost is speed. The agent takes up to an hour to rebuild a clip, where a specialised model needs one diffusion pass. We come back to this in the limitations.
 
 ## Method
 
 <ol class="pipeline">
-  <li><b>Reconstruct</b>A scene agent watches the clip and writes a Blender scene: set, camera, rigged subject, all animation baked.</li>
-  <li><b>Edit in 3D</b>A camera path, a retime, or an effect script written by a second agent changes the scene.</li>
-  <li><b>Render the proxy</b>The edited scene is rendered from the chosen camera as a grey, untextured video.</li>
-  <li><b>Render the video</b>A diffusion model turns the proxy into video, given the clip's first frame and a prompt.</li>
+  <li class="s1"><b>Reconstruct</b>A scene agent watches the clip and writes a Blender scene: set, camera, rigged subject, all animation baked.</li>
+  <li class="s2"><b>Edit in 3D</b>A camera path, a retime, or an effect script written by a second agent changes the scene.</li>
+  <li class="s3"><b>Render the proxy</b>The edited scene is rendered from the chosen camera as a grey, untextured video.</li>
+  <li class="s4"><b>Render the video</b>A diffusion model turns the proxy into video, given the clip's first frame and a prompt.</li>
 </ol>
 
 ### Reconstruction by an agent
@@ -96,7 +130,7 @@ All clips are from DAVIS, between 50 and 104 frames long (2 to 4 seconds), rende
 
 Rendering the unedited scene from the clip's own camera shows what the pipeline preserves when nothing is changed.
 
-<div class="wide">
+<div class="panel">
   <div class="clips">
     <figure><video src="{{ V }}recon_car_turn.mp4" autoplay muted loop playsinline></video></figure>
     <figure><video src="{{ V }}recon_blackswan.mp4" autoplay muted loop playsinline></video></figure>
@@ -114,7 +148,7 @@ Against the DAVIS masks, the subject's silhouette in the agent's scene reaches a
 
 ### Camera control
 
-<div class="wide">
+<div class="panel">
   <div class="clips two">
     <figure><video src="{{ V }}cam_car_orbitR90.mp4" autoplay muted loop playsinline></video><figcaption>Orbit right 90°</figcaption></figure>
     <figure><video src="{{ V }}cam_car_moveup.mp4" autoplay muted loop playsinline></video><figcaption>Move up</figcaption></figure>
@@ -130,7 +164,7 @@ The subject keeps its identity from views the clip never shows, such as the swan
 
 ### Time control
 
-<div class="wide">
+<div class="panel">
   <div class="clips two">
     <figure><video src="{{ V }}time_car_slow.mp4" autoplay muted loop playsinline></video><figcaption>0.25× speed</figcaption></figure>
     <figure><video src="{{ V }}time_car_fast.mp4" autoplay muted loop playsinline></video><figcaption>2× speed: the car drives on past the end of the clip's motion</figcaption></figure>
@@ -146,7 +180,7 @@ At 2× the car finishes the clip's motion after 40 frames and then keeps driving
 
 Each effect below was written by a second agent in 40 to 60 minutes, starting from the reconstructed scene.
 
-<div class="wide">
+<div class="panel">
   <div class="clips two">
     <figure><video src="{{ V }}vfx_car_squish.mp4" autoplay muted loop playsinline></video><figcaption>Squashed by an invisible press</figcaption></figure>
     <figure><video src="{{ V }}vfx_car_burst.mp4" autoplay muted loop playsinline></video><figcaption>Bursts into 73 pieces; the wheels roll on</figcaption></figure>
@@ -166,7 +200,7 @@ Each effect below was written by a second agent in 40 to 60 minutes, starting fr
 
 Effects can also add an object that was never in the clip. The agent models and animates it, and the subject reacts. We found that the first frame does not need editing for this to work: with the untouched first frame, the diffusion model draws the new object from the proxy and the prompt alone. Painting the object into the first frame with an image model is optional, and gives control over how it looks.
 
-<div class="wide">
+<div class="panel">
   <div class="clips two">
     <figure><video src="{{ V }}vfx_car_hand.mp4" autoplay muted loop playsinline></video><figcaption>A giant hand pinches the car</figcaption></figure>
     <figure><video src="{{ V }}vfx_car_palm.mp4" autoplay muted loop playsinline></video><figcaption>A giant palm presses it flat</figcaption></figure>
@@ -183,7 +217,7 @@ The agents build these in quite different ways. The squashed car is a few shape 
 
 A fair question is whether the proxy is needed at all. The base video model can generate from a first frame and a prompt, so we gave unmodified MiniMax-H3 the clip's first frame and the same scene-and-effect description that our renderer received, with no proxy, for all 47 effects we had at the time.
 
-<div class="wide">
+<div class="panel">
   <div class="clips">
     <figure><video src="{{ V }}base_ufo.mp4" autoplay muted loop playsinline></video></figure>
     <figure><video src="{{ V }}base_fish.mp4" autoplay muted loop playsinline></video></figure>
@@ -196,7 +230,7 @@ A fair question is whether the proxy is needed at all. The base video model can 
 
 For events the model knows well, direct generation works, and often looks better than ours: its tractor beam is a proper cone of light and its fish is wet and coloured, where ours inherit a faint beam and a grey fish from the proxy. By our count it produced the requested event in all five external-object effects and in essentially all fourteen break-ups.
 
-<div class="wide">
+<div class="panel">
   <div class="clips">
     <figure><video src="{{ V }}base_rhino_squish.mp4" autoplay muted loop playsinline></video></figure>
     <figure><video src="{{ V }}base_cow_neck.mp4" autoplay muted loop playsinline></video></figure>
@@ -224,7 +258,7 @@ The second thing the proxy buys is the ability to change an effect without start
 
 In each row below, only the first video involved an agent. The others re-run the same script with different numbers.
 
-<div class="wide">
+<div class="panel">
   <div class="clips">
     <figure><video src="{{ V }}param_palm.mp4" autoplay muted loop playsinline></video><figcaption>Giant palm. At half strength the hand stops on a half-crushed cabin; its stop height is computed from the strength.</figcaption></figure>
     <figure><video src="{{ V }}param_bear.mp4" autoplay muted loop playsinline></video><figcaption>Bear shatters. Started later, it breaks further along its walk, from its pose at that frame, with new landings. At half strength it crumbles in place.</figcaption></figure>
@@ -240,7 +274,7 @@ Half strength is often a different outcome and not a scaled copy: the saucer lea
 
 Agents also add parameters of their own, or ones the brief asks for.
 
-<div class="wide">
+<div class="panel">
   <div class="clips">
     <figure><video src="{{ V }}param_robot.mp4" autoplay muted loop playsinline></video><figcaption>Robot, by strength: the full transformation, arms and head without legs, and a slight rear-up.</figcaption></figure>
     <figure><video src="{{ V }}param_robot_time.mp4" autoplay muted loop playsinline></video><figcaption>Robot, by timing: a shorter run, a faster transformation, and three overrides combined.</figcaption></figure>
@@ -273,6 +307,7 @@ Camera and time edits need no agent after reconstruction, so they cost one proxy
 - **Consistency covers geometry, not appearance.** Regions the first frame does not show are imagined again in every render. We have not measured how consistent they are across rounds of editing.
 - **Parameters are only as good as the script.** The check proves that a parameter does something at four settings. It does not verify contacts or framing at other values, some ranges are narrow on short clips, and prompt text exists only for the settings the agent wrote it for.
 - **The evidence is qualitative.** One agent run and one seed per result, a small set of short clips, and counts made by eye.
+{: .limits}
 
 ## Conclusion
 
