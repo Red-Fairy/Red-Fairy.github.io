@@ -103,7 +103,7 @@ The harness replays the script in a clean container and runs checks on the resul
 Because the scene is explicit, three kinds of edit need no learning at all.
 
 - **Camera.** A new camera path is a new camera animation. We use paths that start exactly at the clip's own camera, so the first frame is unchanged: orbits of 90° and 180°, a rise, and a pan away and back.
-- **Time.** A speed change re-samples the subject's animation. At speeds above 1× the subject reaches the end of its recorded motion early and then continues along its path, rather than stopping or reversing.
+- **Time and motion.** A speed change re-samples the subject's animation. At speeds above 1× the subject reaches the end of its recorded motion early and then continues along its path, rather than stopping or reversing. For a person with a skeleton the same re-sampling works per person and per body part.
 - **Visual effects.** A second agent receives the reconstructed scene and a one-paragraph description of the effect, and writes a script that adds it as mesh and motion only: no particles, volumes or textures, since the proxy shows only geometry. Squashing a car, shattering a bear into ceramic shards, or adding a giant hand that crushes the car are all built this way.
 
 ### From proxy to video
@@ -124,7 +124,7 @@ After that, a new setting needs no agent: the script is re-run with an override 
 
 ## Experiments
 
-All clips are from DAVIS, between 50 and 104 frames long (2 to 4 seconds), rendered at 1344×768. Each result below comes from one agent run and one diffusion seed. Videos loop; in every pair the grey proxy is on the left.
+Most clips are from DAVIS, between 50 and 104 frames long (2 to 4 seconds); the scenes with people are longer. Everything is rendered at 1344×768. Each result below comes from one agent run and one diffusion seed. Videos loop; in every pair the grey proxy is on the left.
 
 ### Reconstruction
 
@@ -175,6 +175,55 @@ The subject keeps its identity from views the clip never shows, such as the swan
 </div>
 
 At 2× the car finishes the clip's motion after 40 frames and then keeps driving along the road the agent surveyed, about 21 metres further, with its wheels still turning. That continuation is possible because the scene contains the road and the car's rig, not just the frames that were filmed.
+
+### Motion control for people
+
+Scenes with people are reconstructed the same way, with one addition: each person is an SMPL body, estimated from the clip and refined by the agent, with hair and clothes skinned to it. That gives every person an explicit skeleton, so motion can be edited per person and even per body part. These four clips are longer (121 to 158 frames) and come from films and from multi-person footage.
+
+<div class="panel">
+  <div class="clips">
+    <figure><video src="{{ V }}hum_lala_recon.mp4" autoplay muted loop playsinline></video></figure>
+    <figure><video src="{{ V }}hum_crowd_recon.mp4" autoplay muted loop playsinline></video></figure>
+    <figure><video src="{{ V }}hum_tango_recon.mp4" autoplay muted loop playsinline></video></figure>
+  </div>
+  <p class="cap">Reconstructions with people: a dance duet, a street with 29 people, and a tango in a restaurant. Source clip, the clothed-SMPL proxy, and our render from the clip's camera.</p>
+</div>
+
+**A speed per person.** Each person's whole motion is replayed on their own clock while everyone else keeps the clip's pace. In the duet, the two dancers run at different speeds, here seen from a camera orbiting 45°, so the edit combines motion and camera.
+
+<div class="panel">
+  <div class="clips">
+    <figure><video src="{{ V }}hum_lala_speed.mp4" autoplay muted loop playsinline></video></figure>
+    <figure><video src="{{ V }}hum_lala_speed_proxy.mp4" autoplay muted loop playsinline></video></figure>
+    <figure><video src="{{ V }}hum_lala_speed180.mp4" autoplay muted loop playsinline></video><figcaption>The same three settings from a 180° orbit, ending behind the dancers.</figcaption></figure>
+  </div>
+  <p class="cap">One speed per dancer. Final videos, their proxies, and the same edits under a second camera path. Yellow dress, shirt and tie stay on the right person even when the dancers pass each other at a different moment than in the film.</p>
+</div>
+
+Out of sync, two bodies can end up in the same place. Before rendering, the harness checks for this and moves them apart: in the duet the dancers are pushed apart smoothly, and in the street two walkers who would collide each step aside by half the distance.
+
+<div class="panel">
+  <div class="clips">
+    <figure><video src="{{ V }}hum_crowd_speed.mp4" autoplay muted loop playsinline></video><figcaption>Crowded street: two chosen walkers retimed, the others at the clip's pace. A sped-up walker keeps walking past the end of her recorded motion.</figcaption></figure>
+    <figure><video src="{{ V }}hum_crowd_speed_proxy.mp4" autoplay muted loop playsinline></video></figure>
+    <figure><video src="{{ V }}hum_tango_speed.mp4" autoplay muted loop playsinline></video><figcaption>Tango: the couple is retimed together, one clock for both, so the embrace stays closed. At 1.5× they finish early and come to rest.</figcaption></figure>
+    <figure><video src="{{ V }}hum_paint_speed.mp4" autoplay muted loop playsinline></video><figcaption>Powder fight: two throwers retimed; each one's powder clouds are retimed with them.</figcaption></figure>
+  </div>
+  <p class="cap">Per-person speed in multi-person scenes.</p>
+</div>
+
+**A speed per body part.** With a skeleton, each part can run on its own clock: legs and travel, turning, torso, head, and each arm. A part at speed 0 freezes in its first-frame pose; legs carry the body's position, so planted feet stay planted.
+
+<div class="panel">
+  <div class="clips">
+    <figure><video src="{{ V }}hum_lala_parts1.mp4" autoplay muted loop playsinline></video></figure>
+    <figure><video src="{{ V }}hum_lala_parts_proxy.mp4" autoplay muted loop playsinline></video></figure>
+    <figure><video src="{{ V }}hum_lala_parts2.mp4" autoplay muted loop playsinline></video></figure>
+  </div>
+  <p class="cap">Per-part edits on the duet, from the clip's own camera. With her arms frozen they stay at her chest while her feet keep tapping; with his turns removed he keeps facing the camera.</p>
+</div>
+
+The renders follow the proxies' poses at the frames we checked, and identities survive the dancers overlapping. Two caveats are specific to these scenes. Edited motion is invented motion: in the duet, a dancer at 1.5× runs out of recorded motion two thirds of the way through and plays it backwards, which the later scenes replace with walking on or coming to rest. And faces are plausible but generic where the first frame does not pin them down.
 
 ### Visual effects
 
