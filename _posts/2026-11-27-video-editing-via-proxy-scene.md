@@ -43,14 +43,14 @@ thumbnail: /assets/img/blog/proxy-scene.jpg
   .prose ul.limits { padding: 1rem 1.2rem 1rem 2.4rem; background: var(--t-diff); border-radius: .7rem; }
   .prose ul.limits li::marker { color: var(--c-diff); }
   .prose ul.limits strong { color: #8a3d06; }
-  .prose .cells { display: grid; grid-template-columns: repeat(var(--n, 1), minmax(0, 1fr)); gap: .4rem; --wipe: 50%; }
+  .prose .cells { display: grid; grid-template-columns: repeat(var(--n, 1), minmax(0, 1fr)); gap: .4rem; --wipe: 50%; --cut: 50%; }
   .prose .cell { position: relative; min-width: 0; overflow: hidden; border-radius: .4rem; background: #111; }
   .prose .cell video { aspect-ratio: 7 / 4; object-fit: cover; border-radius: 0; }
   .prose .cell .lab, .prose .cell .w-tag { position: absolute; font-size: .72rem; line-height: 1.2; color: #fff; background: rgba(10, 12, 20, .68); padding: .18rem .45rem; border-radius: .25rem; pointer-events: none; }
   .prose .cell .lab { left: .4rem; top: .4rem; max-width: calc(100% - .8rem); font-weight: 600; }
   .prose .cell .w-tag { bottom: .4rem; } .prose .cell .w-tag.l { left: .4rem; } .prose .cell .w-tag.r { right: .4rem; }
   .prose .wipe { cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
-  .prose .wipe .w-top { position: absolute; inset: 0; height: 100%; clip-path: inset(0 calc(100% - var(--wipe)) 0 0); }
+  .prose .wipe .w-top { position: absolute; inset: 0; height: 100%; clip-path: inset(0 var(--cut) 0 0); }
   .prose .wipe .w-bar { position: absolute; top: 0; bottom: 0; left: var(--wipe); width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, .35); pointer-events: none; }
   .prose .wipe .w-knob { position: absolute; top: 50%; left: var(--wipe); width: 1.6rem; height: 1.6rem; transform: translate(-50%, -50%); border-radius: 50%; background: #fff; box-shadow: 0 1px 5px rgba(0, 0, 0, .5); display: grid; place-items: center; }
   .prose .wipe .w-knob::before { content: "\25C2\25B8"; font-size: .7rem; color: #151826; letter-spacing: -1px; }
@@ -70,19 +70,19 @@ thumbnail: /assets/img/blog/proxy-scene.jpg
 
 <div class="panel teaser">
   <video src="{{ V }}teaser.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
-  <p class="cap">One clip, seven edits, one pipeline. An agent rebuilds the source clip as a 3D scene in code. From that scene come a new camera path, a retime in which the car drives on past the end of the clip, and three visual effects that a second agent writes as scripts: the car bursts apart, a flying saucer carries it away, a giant palm presses it flat. An effect can then be adjusted without an agent by changing a number: the saucer arriving 8 frames later, and at half strength, where the car is lifted half way and set back down. The inset is the grey proxy render each video was made from.</p>
+  <p class="cap">One clip, nine edits, one pipeline. An agent rebuilds the source clip as a 3D scene in code. From that scene come a new camera path, a retime in which the car drives on past the end of the clip, and three visual effects that a second agent writes as scripts: the car bursts apart, a flying saucer carries it away, a giant palm presses it flat. An effect can then be adjusted without an agent by changing a number: the saucer and the palm each arriving 8 frames later, and each at half strength, where the saucer sets the car back down and the palm stops on a half-crushed cabin. The inset is the grey proxy render each video was made from.</p>
 </div>
 
 ## Introduction
 
-Video diffusion models are now good enough that generated footage of people is hard to tell from real footage. Controlling them is a separate problem. The usual answer is a specialised model per control signal: a camera-controlled model, a retiming model, a pose-driven model, an effects model. Each needs its own training data and its own training run, and each covers only its own kind of edit.
+Video diffusion models are now good enough that generated footage of people is hard to tell from real footage. Controlling them is a separate problem. The usual answer is a specialised model per control signal: a camera-controlled model such as [ReCamMaster](https://github.com/KlingAIResearch/ReCamMaster), a retiming model, a pose-driven model, an effects model. Each needs its own training data and its own training run, and each covers only its own kind of edit.
 
 Two things make a different design possible today.
 
 - **Agents can write scenes.** A capable vision-language agent with a code interpreter can watch a short clip and reconstruct it as a 3D scene in code: the set, a calibrated camera, and a rigged, animated subject. Code is a convenient representation for editing, because moving a camera, retiming an animation or adding an object are all ordinary program changes.
 - **Diffusion models can render.** An agent-built scene has little texture and simple shading, and some things are very hard to build by hand at all. Even the best studio animation is still easy to tell from live action, while diffusion models produce footage that is not, which says their space of images is far larger than what explicit 3D assets reach. So we do not ask the agent for realism. We ask it for geometry and motion, and leave appearance to a diffusion model.
 
-Our pipeline joins the two. The agent's scene is rendered as a grey, untextured **proxy video**. A structure-conditioned video model, SolarRenderer, turns that proxy into the final video, taking the look from the first frame of the original clip and a text prompt.
+Our pipeline joins the two. The agent's scene is rendered as a grey, untextured **proxy video**. A structure-conditioned video model, [SolarRenderer](https://arxiv.org/abs/2610.28630), turns that proxy into the final video, taking the look from the first frame of the original clip and a text prompt.
 
 This has three consequences that we explore below.
 
@@ -105,7 +105,9 @@ The cost is speed. The agent takes up to an hour to rebuild a clip, where a spec
 
 ### Reconstruction by an agent
 
-The scene agent is a coding agent (gpt-6.2-astra, run through the Codex CLI in a sandbox) with Blender and a 60-minute budget. It receives the clip's frames and a short brief, and must deliver a Python script that rebuilds the scene from nothing: the set, a camera matched to the footage, and the subject as a rigged mesh whose animation is baked to keyframes. Human pose and image-to-3D estimators are available to it as optional tools; on the clips shown here the agents mostly modelled the subject themselves, for example an eight-bone car with steering and wheel spin fitted to wheel hubs and roof rails in the footage, or a sixteen-bone swan.
+The scene agent is a coding agent (gpt-6.2-astra, run through the Codex CLI in a sandbox adapted from [VibePrevisBench](https://arxiv.org/abs/2611.15789)) with Blender and a 60-minute budget. It receives the clip's frames and a short brief, and must deliver a Python script that rebuilds the scene from nothing: the set, a camera matched to the footage, and the subject as a rigged mesh whose animation is baked to keyframes. Human pose and image-to-3D estimators are available to it as optional tools; on the clips shown here the agents mostly modelled the subject themselves, for example an eight-bone car with steering and wheel spin fitted to wheel hubs and roof rails in the footage, or a sixteen-bone swan.
+
+For scenes with people or unusual subjects the agent can also call two tools, [CoMotion](https://openreview.net/forum?id=qKu6KWPgxt) for multi-person 3D body tracking and [AniGen](https://arxiv.org/abs/2604.08746) for turning one image into a rigged mesh, and must refine whatever they return.
 
 The harness replays the script in a clean container and runs checks on the result: motion smoothness, constant bone lengths, intersections with the set, and how much of the frame the set covers from nearby viewpoints.
 
@@ -119,7 +121,7 @@ Because the scene is explicit, three kinds of edit need no learning at all.
 
 ### From proxy to video
 
-The edited scene is rendered with Blender's Workbench engine in a single grey material. SolarRenderer, a fine-tune of the MiniMax-H3 video model, takes three inputs: this proxy video for structure and motion, the first frame of the original clip for appearance, and a text prompt describing the scene and the edit. It was trained once, for the general task of rendering a structure video, and is not adapted to any edit type here.
+The edited scene is rendered with Blender's Workbench engine in a single grey material. SolarRenderer, a fine-tune of the [MiniMax-H3](https://huggingface.co/MiniMaxAI/MiniMax-H3) video model, takes three inputs: this proxy video for structure and motion, the first frame of the original clip for appearance, and a text prompt describing the scene and the edit. It was trained once, for the general task of rendering a structure video, and is not adapted to any edit type here.
 
 ### Making effects adjustable
 
@@ -135,7 +137,7 @@ After that, a new setting needs no agent: the script is re-run with an override 
 
 ## Experiments
 
-Most clips are from DAVIS, between 50 and 104 frames long (2 to 4 seconds); the scenes with people are longer. Everything is rendered at 1344×768. Each result below comes from one agent run and one diffusion seed. Videos loop. Wherever a video has a white handle, drag it: left of the handle is our render, right of it is the grey proxy it was made from. All handles in a group move together.
+Most clips are from [DAVIS](https://davischallenge.org/), between 50 and 104 frames long (2 to 4 seconds); the scenes with people are longer, and two of them (the tango and the stairway dance) are film clips from [ReCamMaster](https://github.com/KlingAIResearch/ReCamMaster)'s example set. Everything is rendered at 1344×768. Each result below comes from one agent run and one diffusion seed. Videos loop. Wherever a video has a white handle, drag it: left of the handle is our render, right of it is the grey proxy it was made from. All handles in a group move together.
 
 ### Reconstruction
 
@@ -160,18 +162,17 @@ Against the DAVIS masks, the subject's silhouette in the agent's scene reaches a
 ### Camera control
 
 <div class="panel">
-  <div class="clips two">
-    <figure><div class="cells" style="--n:1"><div class="cell wipe"><video src="{{ V }}car_turn-proxies-orbitR90_n80.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}car_turn-renders-orbitR90_n80.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span></div></div><figcaption>Orbit right 90°</figcaption></figure>
-    <figure><div class="cells" style="--n:1"><div class="cell wipe"><video src="{{ V }}car_turn-proxies-moveup_n80.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}car_turn-renders-moveup_n80.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span></div></div><figcaption>Move up</figcaption></figure>
-    <figure><div class="cells" style="--n:1"><div class="cell wipe"><video src="{{ V }}car_turn-proxies-whip_n80.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}car_turn-renders-whip_n80.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span></div></div><figcaption>Pan away and back</figcaption></figure>
-    <figure><div class="cells" style="--n:1"><div class="cell wipe"><video src="{{ V }}blackswan-proxies-orbitL180_n50.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}blackswan-renders-orbitL180_n50.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span></div></div><figcaption>Orbit left 180°</figcaption></figure>
-    <figure><div class="cells" style="--n:1"><div class="cell wipe"><video src="{{ V }}blackswan-proxies-orbitR90_n50.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}blackswan-renders-orbitR90_n50.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span></div></div><figcaption>Orbit right 90°</figcaption></figure>
-    <figure><div class="cells" style="--n:1"><div class="cell wipe"><video src="{{ V }}horsejump_low-proxies-orbitL90_n60.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}horsejump_low-renders-orbitL90_n60.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span></div></div><figcaption>Orbit left 90°</figcaption></figure>
+  <div class="clips">
+    <figure><div class="cells" style="--n:2"><div class="cell wipe"><video src="{{ V }}car_turn-proxies-orbitR90_n80.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}car_turn-renders-orbitR90_n80.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span><span class="lab">Orbit right 90°</span></div><div class="cell wipe"><video src="{{ V }}car_turn-proxies-whip_n80.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}car_turn-renders-whip_n80.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span><span class="lab">Pan away and back</span></div></div><figcaption>Car on a mountain road</figcaption></figure>
+    <figure><div class="cells" style="--n:2"><div class="cell wipe"><video src="{{ V }}blackswan-proxies-orbitL180_n50.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}blackswan-renders-orbitL180_n50.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span><span class="lab">Orbit left 180°</span></div><div class="cell wipe"><video src="{{ V }}blackswan-proxies-orbitR90_n50.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}blackswan-renders-orbitR90_n50.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span><span class="lab">Orbit right 90°</span></div></div><figcaption>Black swan</figcaption></figure>
+    <figure><div class="cells" style="--n:2"><div class="cell wipe"><video src="{{ V }}horsejump_low-proxies-orbitL90_n60.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}horsejump_low-renders-orbitL90_n60.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span><span class="lab">Orbit left 90°</span></div><div class="cell wipe"><video src="{{ V }}horsejump_low-proxies-moveup_n60.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}horsejump_low-renders-moveup_n60.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span><span class="lab">Move up</span></div></div><figcaption>Show jump</figcaption></figure>
+    <figure><div class="cells" style="--n:2"><div class="cell wipe"><video src="{{ V }}lalaland-proxies-orbit180_n158.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}lalaland-renders-orbit180_n158.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span><span class="lab">Half orbit 180°</span></div><div class="cell wipe"><video src="{{ V }}lalaland-proxies-crane_n158.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}lalaland-renders-crane_n158.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span><span class="lab">Overhead crane</span></div></div><figcaption>Tap duet at dusk</figcaption></figure>
+    <figure><div class="cells" style="--n:2"><div class="cell wipe"><video src="{{ V }}joker_stairs-proxies_smpl-cam_orbitR180_n121.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}joker_stairs-renders_smpl-cam_orbitR180_n121.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span><span class="lab">Orbit right 180°</span></div><div class="cell wipe"><video src="{{ V }}joker_stairs-proxies_smpl-cam_moveup_n121.mp4" muted loop playsinline preload="metadata"></video><video class="w-top" src="{{ V }}joker_stairs-renders_smpl-cam_moveup_n121.mp4" muted loop playsinline preload="metadata"></video><span class="w-bar"></span><span class="w-knob" role="slider" tabindex="0" aria-label="Slide between our render and the proxy" aria-valuemin="0" aria-valuemax="100"></span><span class="w-tag l">Ours</span><span class="w-tag r">Proxy</span><span class="lab">Move up</span></div></div><figcaption>Dance on a stairway</figcaption></figure>
   </div>
-  <p class="cap">New camera paths through the reconstructed scenes. Every path starts at the clip's own camera.</p>
+  <p class="cap">Two new camera paths through each of five reconstructed scenes: three DAVIS clips and two film clips. Every path starts at the clip's own camera; drag a handle to see the proxy.</p>
 </div>
 
-The subject keeps its identity from views the clip never shows, such as the swan head-on or the car from behind. When the camera pans away, the model does not invent a second subject in the empty view. Where the new view shows parts of the set that the agent modelled only roughly, the render becomes cleaner and more synthetic than the clip, and an object between camera and subject, such as a tree on a 180° orbit, is rendered as it stands in the proxy.
+The subject keeps its identity from views the clip never shows, such as the swan head-on, the car from behind, or the two dancers from the far side and from overhead. When the camera pans away, the model does not invent a second subject in the empty view. Where the new view shows parts of the set that the agent modelled only roughly, the render becomes cleaner and more synthetic than the clip, and an object between camera and subject, such as a tree on a 180° orbit, is rendered as it stands in the proxy.
 
 ### Time control
 
@@ -189,7 +190,7 @@ At 2× the car finishes the clip's motion after 40 frames and then keeps driving
 
 ### Motion control for people
 
-Scenes with people are reconstructed the same way, with one addition: each person is an SMPL body, estimated from the clip and refined by the agent, with hair and clothes skinned to it. That gives every person an explicit skeleton, so motion can be edited per person and even per body part. These four clips are longer (121 to 158 frames) and come from films and from multi-person footage.
+Scenes with people are reconstructed the same way, with one addition: each person is an [SMPL](https://smpl.is.tue.mpg.de/) body, estimated from the clip with [CoMotion](https://openreview.net/forum?id=qKu6KWPgxt) and refined by the agent, with hair and clothes skinned to it. That gives every person an explicit skeleton, so motion can be edited per person and even per body part. These four clips are longer (121 to 158 frames) and come from films and from multi-person footage.
 
 <div class="panel">
   <div class="clips">
@@ -371,13 +372,24 @@ Camera and time edits need no agent after reconstruction, so they cost one proxy
 
 Splitting the work between an agent and a diffusion model gives a video editor with no edit-specific training. The agent supplies what it is good at, an explicit scene in code that can be changed precisely. The diffusion model supplies what it is good at, appearance. Camera, time and visual effects become edits to one scene, they agree with each other because they share it, and an effect, once built, is a program that can be re-run with different numbers. Direct generation is faster and, for familiar events, prettier. The proxy earns its cost when the edit is unusual, when it has to land at a particular moment and place, or when it will need adjusting again.
 
+## References
+
+1. G. Fang, S. Qian, D. Lu, J. Huang, L. Jiang, X. Wang, Y. Song, L. Jiang, M. Z. Shou. [SolarRenderer: Few-Step Generative Reference Rendering](https://arxiv.org/abs/2610.28630). arXiv:2610.28630, 2026.
+2. MiniMax. [MiniMax-H3](https://huggingface.co/MiniMaxAI/MiniMax-H3), the base video model.
+3. A. Newell, P. Hu, L. Lipson, S. R. Richter, V. Koltun. [CoMotion: Concurrent Multi-person 3D Motion](https://openreview.net/forum?id=qKu6KWPgxt). ICLR 2025.
+4. Y.-H. Huang, Z.-X. Zou, Y. He, C. Chang, C.-F. Pu, Z. Yang, Y.-C. Guo, Y.-P. Cao, X. Qi. [AniGen: Unified S<sup>3</sup> Fields for Animatable 3D Asset Generation](https://arxiv.org/abs/2604.08746). arXiv:2604.08746, 2026.
+5. M. Loper, N. Mahmood, J. Romero, G. Pons-Moll, M. J. Black. [SMPL: A Skinned Multi-Person Linear Model](https://smpl.is.tue.mpg.de/). ACM Transactions on Graphics 34(6), 2015.
+6. J. Bai et al. [ReCamMaster: Camera-Controlled Generative Rendering from A Single Video](https://github.com/KlingAIResearch/ReCamMaster). 2025.
+7. Y. Chen et al. [VibePrevisBench: Evaluating Agentic Coding for 4D Scene Generation in Blender](https://arxiv.org/abs/2611.15789). arXiv:2611.15789, 2026.
+8. J. Pont-Tuset, F. Perazzi, S. Caelles, P. Arbeláez, A. Sorkine-Hornung, L. Van Gool. [The 2017 DAVIS Challenge on Video Object Segmentation](https://davischallenge.org/). arXiv:1704.00675, 2017.
+
 <script>
   (function () {
     // Each .cells row is one group: its videos play only while it is on screen and stay on the same frame,
     // and every slider in the row shares one handle position.
     var groups = Array.prototype.slice.call(document.querySelectorAll('.prose .cells'));
     function setWipe(g, p) {
-      p = Math.max(0, Math.min(100, p)); g.dataset.wipe = p; g.style.setProperty('--wipe', p + '%');
+      p = Math.max(0, Math.min(100, p)); g.dataset.wipe = p; g.style.setProperty('--wipe', p + '%'); g.style.setProperty('--cut', (100 - p) + '%');
       g.querySelectorAll('.w-knob').forEach(function (k) { k.setAttribute('aria-valuenow', Math.round(p)); });
     }
     groups.forEach(function (g) {
